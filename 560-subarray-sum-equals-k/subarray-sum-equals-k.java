@@ -1,20 +1,18 @@
 class Solution {
     public int subarraySum(int[] nums, int k) {
-        HashMap<Integer, Integer> hm = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         int prefixSum =0;
-        hm.put(0,1);
-        int noOfSubArrayPossible = 0;
-        for(int i =0; i<nums.length;i++){
+        int noOfSubArray = 0;
+        map.put(0,1);
+        for(int i =0; i<nums.length; i++){
             prefixSum+=nums[i];
 
-            int remove = prefixSum-k;
-
-            if(hm.containsKey(remove)){
-                noOfSubArrayPossible+=hm.get(remove);
+            int removed = prefixSum-k;
+            if(map.containsKey(removed)){
+                noOfSubArray+=map.get(removed);
             }
-
-            hm.put(prefixSum, hm.getOrDefault(prefixSum,0)+1);
+            map.put(prefixSum , map.getOrDefault(prefixSum , 0)+1);
         }
-        return noOfSubArrayPossible;
+        return noOfSubArray;
     }
 }
